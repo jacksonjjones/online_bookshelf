@@ -1,0 +1,12 @@
+<h1>Search Results</h1>
+<ul>
+    {{#each searchResults}}
+        <li>
+            <h2>{{this.title}}</h2>
+            <p><strong>Author:</strong> {{this.author}}</p>
+            <p><strong>Genre:</strong> {{this.genre}}</p>
+            <!-- Add more book details as needed -->
+        </li>
+    {{/each}}
+</ul>
+

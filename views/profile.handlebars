@@ -1,0 +1,18 @@
+<h1>User Profile</h1>
+<div>
+    <p><strong>Name:</strong> {{user.name}}</p>
+    <p><strong>Email:</strong> {{user.email}}</p>
+    <!-- Add more user details as needed -->
+</div>
+
+<h2>User's Books</h2>
+<ul>
+    {{#each user.books}}
+        <li>
+            <h3>{{this.title}}</h3>
+            <p><strong>Author:</strong> {{this.author}}</p>
+            <p><strong>Genre:</strong> {{this.genre}}</p>
+            <!-- Add more book details as needed -->
+        </li>
+    {{/each}}
+</ul>
