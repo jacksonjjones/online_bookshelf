@@ -1,15 +1,15 @@
 const router = require("express").Router();
-const { Book } = require("../models");
+const { Book, User } = require("../models"); // Importing both Book and User models
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
     const bookData = await Book.findAll({});
 
-    const book = bookData.map((blogPost) => book.get({ plain: true }));
+    const books = bookData.map((book) => book.get({ plain: true }));
 
     res.render("homepage", {
-      book,
+      books, // Adjusted variable name to 'books'
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -24,8 +24,8 @@ router.get("/book/:id", withAuth, async (req, res) => {
 
     const book = bookData.get({ plain: true });
 
-    res.render("books", {
-      ...books,
+    res.render("book", {
+      ...book, // Adjusted variable name to 'book'
       logged_in: req.session.logged_in,
     });
   } catch (err) {
