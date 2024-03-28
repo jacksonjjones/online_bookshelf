@@ -4,15 +4,28 @@ const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
-    const bookData = await Book.findAll({});
+    // Fetch all books from the database
+    const bookData = await Book.findAll({
+      attributes: [
+        "book_id",
+        "title",
+        "genre",
+        "author",
+        "description",
+        "thumbnail",
+      ],
+    });
 
+    // Map the book data to plain objects
     const books = bookData.map((book) => book.get({ plain: true }));
 
-    res.render("homepage", {
-      books, // Adjusted variable name to 'books'
+    // testing json
+    res.json({
+      books,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
+    // Handle errors
     console.error(err);
     res.status(500).json(err);
   }
