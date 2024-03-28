@@ -1,17 +1,23 @@
 [
     {
-        "title": ,
-        "genre": ,
-        "author": ,
+        "title": "Something in the Water",
+        "genre": "Thriller, Mystery",
+        "author": "Catherine Steadman",
+        "description": "",
+        "thumbnail": "http://books.google.com/books/content?id=oofnDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
     },
     {
-        "title": ,
-        "genre": ,
-        "author": ,
+        "title": "Dune",
+        "genre": "Science Fiction",
+        "author": "Frank Herbert",
+        "description": "",
+        "thumbnail": "http://books.google.com/books/content?id=ydQiDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
     },
     {
-        "title": ,
-        "genre": ,
-        "author": ,
+        "title": "The Shining",
+        "genre": "Horror Fiction, Thriller",
+        "author": "Stephen King",
+        "description": "",
+        "thumbnail": "http://books.google.com/books/content?id=IBJ1NekdrAMC&printsec=frontcover&img=1&zoom=1&source=gbs_api"
     }
 ]

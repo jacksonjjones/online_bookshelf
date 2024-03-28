@@ -20,6 +20,12 @@ Book.init(
         author: {
             type: DataTypes.STRING
         },
+        description: {
+            type: DataTypes.TEXT
+        },
+        thumbnail: {
+            type: DataTypes.STRING
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
