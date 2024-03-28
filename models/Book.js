@@ -6,7 +6,10 @@ class Book extends Model {}
 Book.init(
     {
         book_id: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
         },
         title: {
             type: DataTypes.STRING
@@ -16,6 +19,14 @@ Book.init(
         },
         author: {
             type: DataTypes.STRING
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "user",
+                key: "id"
+            }
+
         }
     },
     {
