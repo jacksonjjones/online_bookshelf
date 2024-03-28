@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 });
 
 //DELETE books from shelf
-router.delete('/:id', async (req, res) => {
+router.delete('/:book_id', async (req, res) => {
     try {
         const bookData = await Book.destroy({
             where: {
@@ -30,5 +30,22 @@ router.delete('/:id', async (req, res) => {
 });
 
 //UPDATE
-
+router.put('/:book_id', (req, res) => {
+    Book.update(
+        {
+            title: req.body.title,
+            genre: req.body.genre,
+            author: req.body.author,
+        },
+        {
+            where: {
+                book_id: req.params.book_id,
+            },
+        }
+    )
+    .then((updatedBook) => {
+        res.json(updatedBook);
+    })
+    .catch((err) => res.json(err))
+});
 module.exports = router;
