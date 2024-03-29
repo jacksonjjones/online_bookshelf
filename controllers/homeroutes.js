@@ -19,13 +19,13 @@ router.get("/", async (req, res) => {
     // Map the book data to plain objects
     const books = bookData.map((book) => book.get({ plain: true }));
 
-    // testing json
-    res.json({
+    // Rendering the homepage template with fetched data using main layout
+    res.render("homepage", {
+      layout: "main",
       books,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    // Handle errors
     console.error(err);
     res.status(500).json(err);
   }
