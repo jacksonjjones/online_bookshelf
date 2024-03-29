@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Bookshelf</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="row">
+      <div class="three columns">
+        <h1><a href="/">Online Bookshelf</a></h1>
+      </div>
+      <div class="nine columns">
+        <nav>
+          {{#if logged_in}}
+            <a href="/profile">Profile</a> |
+            <button class="no-button" id="logout">Logout</button>
+          {{else}}
+            <a href="/login">Login</a>
+          {{/if}}
+        </nav>
+      </div>
+    </header>
+    <main class="row">
+      <div class="twelve columns">
+        <h2>Books</h2>
+        <div class="books-container">
+          {{#each books}}
+            <div class="book">
+              <h3>{{this.title}}</h3>
+              <p><strong>Author:</strong> {{this.author}}</p>
+              <p><strong>Genre:</strong> {{this.genre}}</p>
+              <p>{{this.description}}</p>
+              <img src="{{this.thumbnail}}" alt="{{this.title}}">
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </main>
+    <footer>
+      
+    </footer>
+  </div>
+  {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
+</html>
