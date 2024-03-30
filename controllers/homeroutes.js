@@ -55,4 +55,8 @@ router.all("/login", (req, res) => {
   res.render("login");
 });
 
+router.get('/explore', (req, res) => {
+  res.render('explore')
+})
+
 module.exports = router;
