@@ -1,10 +1,16 @@
-<div class="container">
-    <h1>{{book.title}}</h1>
-        <div class="book-details">
-            <p><strong>Author:</strong> {{book.author}}</p>
-            <p><strong>Genre:</strong> {{book.genre}}</p>
-            <!-- Add more details here as needed -->
+<div class="book-container">
+    <div class="card book">
+        <div class="card-content">
+            <h3>{{this.title}}</h3>
+            <p><strong>Author:</strong> {{this.author}}</p>
+            <p><strong>Genre:</strong> {{this.genre}}</p>
+            <p>{{this.description}}</p>
+            <img src="{{this.thumbnail}}" alt="{{this.title}}">
+            <!-- Delete button -->
+             <button class="delete-btn" data-book-id="{{this.book_id}}">Delete</button>
         </div>
-        <!-- You can add more sections or details about the book -->
     </div>
+</div>
+
+<script src="/deleteBook.js"></script>
 

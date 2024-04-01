@@ -49,14 +49,30 @@ router.get("/book/:id", withAuth, async (req, res) => {
 
 router.all("/login", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/dashboard");
+    res.redirect("/");
     return;
   }
   res.render("login");
 });
 
-router.get('/explore', (req, res) => {
-  res.render('explore')
-})
+router.get("/explore", withAuth, async (req, res) => {
+  try {
+    console.log("Accessing /explore route...");
+    // Check if the user is logged in
+    if (!req.session.logged_in) {
+      // If not logged in, redirect to the login page
+      return res.redirect("/login");
+    }
+
+    // Your logic to fetch explore page data goes here
+    res.render("explore", {
+      // Your data to pass to the explore page template
+      logged_in: true,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

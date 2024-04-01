@@ -1,8 +1,24 @@
 const router = require("express").Router();
 const { Book } = require("../../models");
+const withAuth = require("../../utils/auth");
+
+router.get("/:book_id", withAuth, async (req, res) => {
+  try {
+    const bookData = await Book.findByPk(req.params.book_id);
+    if (!bookData) {
+      res.status(404).json({ message: "Book not found" });
+      return;
+    }
+    res.render("book", {
+      book: bookData.get({ plain: true }),
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 //CREATE (add) books to shelf
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const bookData = await Book.create(req.body);
     res.status(200).json(bookData);
@@ -11,12 +27,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-//DELETE books from shelf
-router.delete("/:book_id", async (req, res) => {
+router.delete("/:book_id", withAuth, async (req, res) => {
   try {
     const bookData = await Book.destroy({
       where: {
-        id: req.params.id,
+        book_id: req.params.book_id,
       },
     });
     if (!bookData) {
