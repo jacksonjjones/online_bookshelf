@@ -1,51 +1,49 @@
 const loginFormHandler = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    const email = document.querySelector('#email').value.trim();
-    const password = document.querySelector('#password').value.trim();
+  const email = document.querySelector("#email").value.trim();
+  const password = document.querySelector("#password").value.trim();
 
-    if (email && password ) {
+  console.log("Email:", email);
+  console.log("Password:", password);
 
-        const response = await fetch('/api/users/login', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: { 'Content-Type': 'application/json' },
-        })
+  if (email && password) {
+    const response = await fetch("/api/users/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-        if (response.ok) {
-            document.location.replace('./profile');
-        } else {
-            alert(response.statusText);
-        }
+    if (response.ok) {
+      document.location.replace("/");
+    } else {
+      alert(response.statusText);
     }
+  }
 };
 
 const signupFormHandler = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    const username = document.querySelector('#name').value.trim();
-    const email = document.querySelector('#signup-email').value.trim();
-    const password = document.querySelector('#signup-password').value.trim();
+  const username = document.querySelector("#name").value.trim();
+  const email = document.querySelector("#signup-email").value.trim();
+  const password = document.querySelector("#signup-password").value.trim();
 
-    if (username && password) {
-        const response = await fetch('/api/users', {
-            method: 'POST',
-            body: JSON.stringify({ username, email, password }),
-            headers: { 'Content-Type': 'application/json' },
-        });
+  if (username && password) {
+    const response = await fetch("/api/users", {
+      method: "POST",
+      body: JSON.stringify({ username, email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-        if (response.ok) {
-            document.location.replace('./profile');
-        } else {
-            alert(response.statusText);
-        }
+    if (response.ok) {
+      document.location.replace("/");
+    } else {
+      alert(response.statusText);
     }
+  }
 };
 
-document 
-.querySelector('.login')
-.addEventListener('submit', loginFormHandler)
+document.querySelector(".login").addEventListener("submit", loginFormHandler);
 
-document
-.querySelector('.signup')
-.addEventListener('submit', signupFormHandler)
+document.querySelector(".signup").addEventListener("submit", signupFormHandler);
