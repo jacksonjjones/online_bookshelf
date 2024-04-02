@@ -6,6 +6,7 @@
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .card.book h3 {
@@ -22,6 +23,25 @@
     height: auto;
     margin-top: 10px;
 }
+
+.add-to-collection-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: black;
+    opacity: 50%;
+    color: #fff;
+    border: none;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 3px;
+    font-size: 10px;
+    cursor: pointer;
+    width: 120px;
+    padding: 0
+};
+  
+
 
 
     
