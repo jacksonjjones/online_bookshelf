@@ -2,10 +2,13 @@ const router = require("express").Router();
 const { Book, User } = require("../models"); // Importing both Book and User models
 const withAuth = require("../utils/auth");
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
-    // Fetch all books from the database
+    // Fetch all books added by the currently authenticated user
     const bookData = await Book.findAll({
+      where: {
+        user_id: req.session.user_id, // Filter books by user_id
+      },
       attributes: [
         "book_id",
         "title",

@@ -20,10 +20,29 @@ router.get("/:book_id", withAuth, async (req, res) => {
 //CREATE (add) books to shelf
 router.post("/", withAuth, async (req, res) => {
   try {
-    const bookData = await Book.create(req.body);
-    res.status(200).json(bookData);
+    // Ensure the user is logged in
+    if (!req.session.logged_in) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    // Extract book details from the request body
+    const { title, genre, author, description, thumbnail } = req.body;
+
+    // Create a new book record with the user_id set to the current user's ID
+    const newBook = await Book.create({
+      title,
+      genre,
+      author,
+      description,
+      thumbnail,
+      user_id: req.session.user_id, // Set user_id to the current user's ID
+    });
+
+    // Send a success response
+    res.status(200).json({ message: "Book added successfully", newBook });
   } catch (err) {
-    res.status(400).json(err);
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
