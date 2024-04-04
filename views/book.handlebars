@@ -12,5 +12,20 @@
     </div>
 </div>
 
+ <div class="text-center">
+                <h3>Comments</h3>
+                {{#each comments as |comment| }}
+                    <div class="card shadow p-3 mb-2">
+                        <p>{{comment.comment_body}} by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> comment-form }}
+
+
 <script src="/deleteBook.js"></script>
 
