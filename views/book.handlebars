@@ -1,16 +1,26 @@
-<div class="book-container">
-    <div class="card book">
-        <div class="card-content">
-            <h3>{{this.title}}</h3>
-            <p><strong>Author:</strong> {{this.author}}</p>
-            <p><strong>Genre:</strong> {{this.genre}}</p>
-            <p>{{this.description}}</p>
-            <img src="{{this.thumbnail}}" alt="{{this.title}}">
-            <!-- Delete button -->
-             <button class="delete-btn" data-book-id="{{this.book_id}}">Delete</button>
+<div class="row">
+    <div class="three columns book-container">
+        <div class="card book">
+            <div class="card-content">
+                <h3>{{this.title}}</h3>
+                <p><strong>Author:</strong> {{this.author}}</p>
+                <p><strong>Genre:</strong> {{this.genre}}</p>
+                <p>{{this.description}}</p>
+                <img src="{{this.thumbnail}}" alt="{{this.title}}">
+                <!-- Read count input -->
+                <div class="read-count-container">
+                    <label for="readCount">Times Read:</label>
+                    <input class="u-full-width read-count-input" type="number" id="readCount" name="readCount" value="{{this.readCount}}">
+                    <button class="button-primary update-read-count-btn" data-book-id="{{this.book_id}}">Update</button>
+                </div>
+                <!-- Delete button -->
+                <button class="button delete-btn" data-book-id="{{this.book_id}}">Delete</button>
+            </div>
         </div>
     </div>
 </div>
 
+<script src="/editReadCount.js"></script>
 <script src="/deleteBook.js"></script>
+
 

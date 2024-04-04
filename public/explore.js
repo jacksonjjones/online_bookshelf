@@ -65,7 +65,7 @@ document.getElementById("searchedBooks").addEventListener("click", (event) => {
   // Check if the clicked element has the class "add-to-collection-btn"
   if (event.target.classList.contains("add-to-collection-btn")) {
     // Extract book details from the parent element of the clicked button
-    const parentElement = event.target.parentElement;
+    const parentElement = event.target.closest(".book");
     const bookDetails = {
       // Extract title from the parent element of the clicked button
       title: parentElement.querySelector("h3").innerText,
@@ -73,8 +73,8 @@ document.getElementById("searchedBooks").addEventListener("click", (event) => {
       author: parentElement.querySelector("p").innerText.split(":")[1].trim(),
       // Extract genre from the parent element of the clicked button
       genre: parentElement
-        .querySelector("p")
-        .nextElementSibling.innerText.split(":")[1]
+        .querySelector("p:nth-of-type(2)")
+        .innerText.split(":")[1]
         .trim(),
       // Extract thumbnail source from the parent element of the clicked button
       thumbnail: parentElement.querySelector("img").src,
