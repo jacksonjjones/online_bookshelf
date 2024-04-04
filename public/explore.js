@@ -1,8 +1,11 @@
+let searchData; // Declare a variable outside of the event listener
+
 searchBook.addEventListener("click", function () {
   fetch("/api/google/search/" + search.value)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      searchData = data; // Store the data in the variable
       for (let i = 0; i < data.length; i++) {
         const card = document.createElement("div");
         card.classList.add("card", "book");
@@ -66,18 +69,26 @@ document.getElementById("searchedBooks").addEventListener("click", (event) => {
   if (event.target.classList.contains("add-to-collection-btn")) {
     // Extract book details from the parent element of the clicked button
     const parentElement = event.target.closest(".book");
+    const title = parentElement.querySelector("h3").innerText;
+    const author = parentElement
+      .querySelector("p:nth-of-type(1)")
+      .innerText.split(":")[1]
+      .trim();
+    const genre = parentElement
+      .querySelector("p:nth-of-type(2)")
+      .innerText.split(":")[1]
+      .trim();
+    const thumbnail = parentElement.querySelector("img").src;
+    const description = searchData.find(
+      (book) => book.volumeInfo.title === title
+    ).volumeInfo.description;
+
     const bookDetails = {
-      // Extract title from the parent element of the clicked button
-      title: parentElement.querySelector("h3").innerText,
-      // Extract author from the parent element of the clicked button
-      author: parentElement.querySelector("p").innerText.split(":")[1].trim(),
-      // Extract genre from the parent element of the clicked button
-      genre: parentElement
-        .querySelector("p:nth-of-type(2)")
-        .innerText.split(":")[1]
-        .trim(),
-      // Extract thumbnail source from the parent element of the clicked button
-      thumbnail: parentElement.querySelector("img").src,
+      title,
+      author,
+      genre,
+      thumbnail,
+      description, // Include the description
     };
 
     // Call the addToCollection function and pass the bookDetails object as an argument
