@@ -1,27 +1,47 @@
-const search = document.getElementById("search");
-const searchBook = document.getElementById("searchBook");
-
 searchBook.addEventListener("click", function () {
   fetch("/api/google/search/" + search.value)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
       for (let i = 0; i < data.length; i++) {
-        const container = document.createElement("div");
+        const card = document.createElement("div");
+        card.classList.add("card", "book");
+
+        // Card content
+        const cardContent = document.createElement("div");
+        cardContent.classList.add("card-content");
 
         // Title
-        const title = document.createElement("h2");
+        const title = document.createElement("h3");
         title.innerText = data[i].volumeInfo.title;
-        container.appendChild(title);
+        cardContent.appendChild(title);
+
+        // Plus sign button
+        const plusButton = document.createElement("button");
+        plusButton.innerText = "Add To Shelf";
+        plusButton.classList.add("add-to-collection-btn");
+        cardContent.appendChild(plusButton);
+
+        card.appendChild(cardContent);
+        document.getElementById("searchedBooks").appendChild(card);
 
         // Author
         const author = document.createElement("p");
-        author.innerText =
-          "Author: " +
-          (data[i].volumeInfo.authors
+        author.innerHTML = `<strong>Author:</strong> ${
+          data[i].volumeInfo.authors
             ? data[i].volumeInfo.authors.join(", ")
-            : "Unknown");
-        container.appendChild(author);
+            : "Unknown"
+        }`;
+        cardContent.appendChild(author);
+
+        // Genre
+        const genre = document.createElement("p");
+        genre.innerHTML = `<strong>Genre:</strong> ${
+          data[i].volumeInfo.categories
+            ? data[i].volumeInfo.categories.join(", ")
+            : "Unknown"
+        }`;
+        cardContent.appendChild(genre);
 
         // Thumbnail
         if (
@@ -31,25 +51,11 @@ searchBook.addEventListener("click", function () {
           const thumbnail = document.createElement("img");
           thumbnail.src = data[i].volumeInfo.imageLinks.thumbnail;
           thumbnail.alt = data[i].volumeInfo.title;
-          container.appendChild(thumbnail);
+          cardContent.appendChild(thumbnail);
         }
 
-        // Genre
-        const genre = document.createElement("p");
-        genre.innerText =
-          "Genre: " +
-          (data[i].volumeInfo.categories
-            ? data[i].volumeInfo.categories.join(", ")
-            : "Unknown");
-        container.appendChild(genre);
-
-        // Plus sign button
-        const plusButton = document.createElement("button");
-        plusButton.innerText = "+";
-        plusButton.classList.add("add-to-collection-btn");
-        container.appendChild(plusButton);
-
-        document.getElementById("searchedBooks").appendChild(container);
+        card.appendChild(cardContent);
+        document.getElementById("searchedBooks").appendChild(card);
       }
     });
 });
@@ -59,14 +65,17 @@ document.getElementById("searchedBooks").addEventListener("click", (event) => {
   // Check if the clicked element has the class "add-to-collection-btn"
   if (event.target.classList.contains("add-to-collection-btn")) {
     // Extract book details from the parent element of the clicked button
-    const parentElement = event.target.parentElement;
+    const parentElement = event.target.closest(".book");
     const bookDetails = {
       // Extract title from the parent element of the clicked button
-      title: parentElement.querySelector("h2").innerText,
+      title: parentElement.querySelector("h3").innerText,
       // Extract author from the parent element of the clicked button
-      author: parentElement.querySelector("p").innerText.substring(8), // Remove "Author: " prefix
+      author: parentElement.querySelector("p").innerText.split(":")[1].trim(),
       // Extract genre from the parent element of the clicked button
-      genre: parentElement.querySelector("p").innerText.substring(8), // Remove "Genre: " prefix
+      genre: parentElement
+        .querySelector("p:nth-of-type(2)")
+        .innerText.split(":")[1]
+        .trim(),
       // Extract thumbnail source from the parent element of the clicked button
       thumbnail: parentElement.querySelector("img").src,
     };
