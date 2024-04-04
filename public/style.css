@@ -40,7 +40,16 @@
     width: 120px;
     padding: 0
 };
-  
+
+.read-count-container {
+    display: flex;
+    align-items: center;
+}
+
+.read-count-container input {
+    width: 50px; /* Adjust the width as needed */
+}
+
 
 
 
