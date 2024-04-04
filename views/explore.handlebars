@@ -2,4 +2,13 @@
 <button id="searchBook">Search</button>
 <section id="searchedBooks">
 </section>
+<section>
+    
+    {{#each bestSellers as |bestSeller|  }}
+    <div id="bestSeller">
+    <h3>{{ bestSeller.title }} </h3>
+     <h4>{{ bestSeller.author }} </h4>
+     </div>
+    {{/each }}
+</section>
 <script src = "/explore.js"></script>
