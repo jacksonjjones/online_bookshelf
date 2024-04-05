@@ -1,4 +1,58 @@
 /* Custom CSS for book cards */
+body {
+    margin: 0;
+    padding: 0; 
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
+.container {
+    width: 100vw; 
+    margin: 0; 
+    padding: 0; 
+    
+    
+  }
+ main {
+  width: 100%;
+  margin-left: 150px; /* You might adjust this value as needed */
+  margin-top: 10px;
+}
+
+
+.comments-section, .comment-form-container {
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    margin-top: 5px;
+    margin-bottom: 0; /* Add space between book content and comments */
+}
+
+.comments-section {
+    margin-bottom: 20px; /* Add space between comments and comment form */
+}
+
+.comments-section h3 {
+    margin-bottom: 0;
+}
+
+nav {
+    margin-top: 15px;
+    margin-right: 75px;
+
+}
+
+header {
+   padding-top: 30px;
+   padding-bottom: 15px;
+   background-color: #f4f4f4;
+   width: 100vw;
+
+
+}
+h1 {
+    margin-left: 50px;
+}
+
+
 .card.book {
     background-color: #f4f4f4;
     border: 1px solid #ddd;
