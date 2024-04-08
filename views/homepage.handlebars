@@ -1,22 +1,22 @@
 <main class="row">
-    <div class="twelve columns">
+    <div class="twelve columns homepage-books-container">
         <h2>Books</h2>
-        <div class="books-container">
+        <div class="books-container row">
             {{#each books}}
-            <a href="/book/{{this.book_id}}" class="book-link">
-                <div class="card book">
-                    <div class="card-content">
-                        <h3>{{this.title}}</h3>
-                        <p><strong>Author:</strong> {{this.author}}</p>
-                        <p><strong>Genre:</strong> {{this.genre}}</p>
-                        <img src="{{this.thumbnail}}" alt="{{this.title}}">
+            <div class="four columns">
+                <a href="/book/{{this.book_id}}" class="book-link">
+                    <div class="card book">
+                        <div class="card-content">
+                            <h3>{{this.title}}</h3>
+                            <p><strong>Author:</strong> {{this.author}}</p>
+                            <img src="{{this.thumbnail}}" alt="{{this.title}}">
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
             {{/each}}
         </div>
     </div>
 </main>
-
 
 
